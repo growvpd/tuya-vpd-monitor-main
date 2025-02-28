@@ -1,0 +1,221 @@
+/* Estilo global */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #f9f9f9; /* Cor de fundo clara */
+    min-height: 100vh;
+    overflow-x: hidden; /* Evita rolagem horizontal */
+}
+
+/* Estilo para o cabeçalho */
+header {
+    width: 100%;
+    background-color: #4CAF50; /* Verde */
+    padding: 15px 0;
+    color: white;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+/* Contêiner do gráfico */
+.chart-container {
+    width: 90%; /* Largura responsiva */
+    max-width: 1200px; /* Limite máximo */
+    height: 600px; /* Altura fixa */
+    margin: 20px auto;
+    overflow: hidden; /* Prevenir crescimento */
+    position: relative; /* Para evitar que elementos extrapolem o contêiner */
+}
+
+/* Estilo para o canvas do gráfico */
+canvas {
+    max-width: 100%; /* Ajusta a largura ao container */
+    height: 100%; /* Adapta ao tamanho do container */
+    display: block;
+}
+
+/* Contêiner principal para centralizar o conteúdo */
+main {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    overflow: hidden; /* Impede o scroll contínuo */
+}
+
+/* Estilo para o valor do VPD em tempo real */
+.current-vpd {
+    font-size: 1.5em;
+    color: #4CAF50; /* Verde para destacar */
+    margin: 10px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Contêiner para a legenda */
+.legend-container {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}
+
+.legend-container span {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.legend-container .point {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+.point.green {
+    background-color: green;
+}
+
+.point.blue {
+    background-color: blue;
+}
+
+.point.purple {
+    background-color: purple;
+}
+
+.point.red {
+    background-color: red;
+}
+
+/* Estilo responsivo */
+@media (max-width: 768px) {
+    header {
+        font-size: 1.4em;
+    }
+
+    header h1 {
+        font-size: 1.2em;
+    }
+
+    .chart-container {
+        height: 300px; /* Reduz a altura do gráfico em dispositivos menores */
+    }
+
+    .current-vpd {
+        font-size: 1.2em; /* Ajusta o tamanho para telas menores */
+    }
+
+    .legend-container {
+        font-size: 12px; /* Ajusta o tamanho da legenda */
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: 1.2em;
+    }
+
+    header h1 {
+        font-size: 1em;
+    }
+
+    .chart-container {
+        height: 250px; /* Reduz ainda mais para dispositivos muito pequenos */
+    }
+
+    .current-vpd {
+        font-size: 1em; /* Ajusta ainda mais o tamanho em dispositivos muito pequenos */
+    }
+
+    .legend-container {
+        font-size: 10px; /* Ajusta ainda mais o tamanho da legenda */
+    }
+}
+
+/* Estilo para o contêiner de métricas */
+.metrics-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    background-color: #4CAF50; /* Verde similar ao exemplo */
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+  }
+  
+  /* Estilo para cada métrica individual */
+  .metric {
+    text-align: center;
+  }
+  
+  .metric-value {
+    font-size: 2.5em;
+    font-weight: bold;
+    display: block;
+  }
+  
+  .metric-label {
+    font-size: 1.2em;
+    margin-top: 5px;
+  }
+  /* Contêiner do botão */
+.button-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  /* Estilo do botão */
+  .button-container button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-container button:hover {
+    background-color: #45a049; /* Tom mais escuro ao passar o mouse */
+  }
+  
+/* Contêiner do botão */
+.button-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  /* Estilo do botão */
+  .button-container button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-container button:hover {
+    background-color: #45a049; /* Tom mais escuro ao passar o mouse */
+  }

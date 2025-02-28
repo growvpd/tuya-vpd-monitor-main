@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitor de Cultivo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Monitor de Cultivo</h1>
+  </header>
+  <main>
+    <!-- Contêiner de métricas -->
+    <div class="metrics-container">
+      <div class="metric">
+        <span class="metric-value" id="currentTemperature">--</span>
+        <span class="metric-label">Temperatura (°C)</span>
+      </div>
+      <div class="metric">
+        <span class="metric-value" id="currentHumidity">--</span>
+        <span class="metric-label">Umidade (%)</span>
+      </div>
+      <div class="metric">
+        <span class="metric-value" id="currentVPD">--</span>
+        <span class="metric-label">VPD (kPa)</span>
+      </div>
+    </div>
+
+    <!-- Botão para acessar a página VPD -->
+    <div class="button-container">
+      <button onclick="window.location.href='vpd.html'">Acessar Página VPD</button>
+    </div>
+  </main>
+  <script src="dashboard.js"></script>
+
+      <!-- Botão para acessar a página Control Device -->
+      <div class="button-container">
+        <button onclick="window.location.href='device-control.html'">Controle do AR</button>
+      </div>
+    </main>
+    <script src="dashboard.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de Dispositivos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #f4f4f4;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .status-display {
+      margin: 20px 0;
+      padding: 10px;
+      border-radius: 8px;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .status-display span {
+      font-size: 1.2rem;
+      color: #666;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin: 10px 0;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button#turnOn {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    button#turnOn:hover {
+      background-color: #45a049;
+    }
+
+    button#turnOff {
+      background-color: #f44336;
+      color: white;
+    }
+
+    button#turnOff:hover {
+      background-color: #e53935;
+    }
+
+    .temperature-settings {
+      margin-top: 20px;
+    }
+
+    .temperature-settings label {
+      display: block;
+      margin-top: 10px;
+      text-align: left;
+      color: #555;
+    }
+
+    .temperature-settings input {
+      width: calc(100% - 20px);
+      margin: 5px 0;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button#updateTemp {
+      background-color: #2196f3;
+      color: white;
+    }
+
+    button#updateTemp:hover {
+      background-color: #1e88e5;
+    }
+
+    .temperature-values {
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 0;
+    }
+
+    .temperature-values div {
+      width: 45%;
+      background: #f0f0f0;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .temperature-values div span {
+      display: block;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .temperature-values div small {
+      font-size: 0.8rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Controle de Dispositivos</h1>
+
+    <!-- Display de Status -->
+    <div class="status-display">
+      <span>Status: <strong id="deviceStatus">Desconhecido</strong></span>
+    </div>
+
+    <!-- Botões de Controle -->
+    <button id="turnOn">Ligar Dispositivo</button>
+    <button id="turnOff">Desligar Dispositivo</button>
+
+    <!-- Valores de Temperatura -->
+    <div class="temperature-values">
+      <div>
+        <span id="minTemperature">24°C</span>
+        <small>Temperatura Mínima</small>
+      </div>
+      <div>
+        <span id="maxTemperature">26°C</span>
+        <small>Temperatura Máxima</small>
+      </div>
+    </div>
+
+    <!-- Configuração de Temperaturas -->
+    <div class="temperature-settings">
+      <label for="minTemp">Temperatura Mínima (Desliga):</label>
+      <input type="number" id="minTemp" placeholder="Ex: 24">
+      <label for="maxTemp">Temperatura Máxima (Liga):</label>
+      <input type="number" id="maxTemp" placeholder="Ex: 26">
+      <button id="updateTemp">Atualizar Configuração</button>
+    </div>
+  </div>
+
+  <script>
+    async function fetchData(url, options = {}) {
+      try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.message || "Erro desconhecido");
+        return data;
+      } catch (error) {
+        alert(`Erro: ${error.message}`);
+        console.error(error);
+      }
+    }
+
+    // Atualiza o status do dispositivo
+    function updateDeviceStatus(status) {
+      const deviceStatus = document.getElementById("deviceStatus");
+      deviceStatus.textContent = status ? "Ligado" : "Desligado";
+      deviceStatus.style.color = status ? "green" : "red";
+    }
+
+    // Atualiza as temperaturas exibidas
+    function updateTemperatureDisplay(min, max) {
+      document.getElementById("minTemperature").textContent = `${min}°C`;
+      document.getElementById("maxTemperature").textContent = `${max}°C`;
+    }
+
+    // Ligar o dispositivo
+    document.getElementById("turnOn").addEventListener("click", async () => {
+      const result = await fetchData("./backend/device-control/on", { method: "POST" });
+      if (result && result.success) {
+        alert(result.message);
+        updateDeviceStatus(true);
+      }
+    });
+
+    // Desligar o dispositivo
+    document.getElementById("turnOff").addEventListener("click", async () => {
+      const result = await fetchData("./backend/device-control/off", { method: "POST" });
+      if (result && result.success) {
+        alert(result.message);
+        updateDeviceStatus(false);
+      }
+    });
+
+    // Atualizar temperaturas configuradas
+    document.getElementById("updateTemp").addEventListener("click", async () => {
+      const minTemp = document.getElementById("minTemp").value;
+      const maxTemp = document.getElementById("maxTemp").value;
+
+      if (!minTemp || !maxTemp) {
+        alert("Por favor, insira valores válidos para as temperaturas.");
+        return;
+      }
+
+      const result = await fetchData("./backend/device-control/set-temperature", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ minTemp, maxTemp }),
+      });
+
+      if (result && result.success) {
+        alert(result.message);
+        updateTemperatureDisplay(minTemp, maxTemp);
+      }
+    });
+
+    // Inicializa com as temperaturas padrão
+    updateTemperatureDisplay(24, 26);
+  </script>
+</body>
+</html>

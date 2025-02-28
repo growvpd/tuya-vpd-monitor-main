@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitor de VPD</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Monitor de VPD</h1>
+  </header>
+  <main>
+    <!-- Exibir o VPD Atual -->
+    <div class="current-vpd" id="realTimeVPD">Carregando VPD...</div>
+    <!-- Leganda do grafico de VPD -->
+    <div style="text-align: center; margin-top: 10px;">
+        <span style="color: green; font-weight: bold;">● Propagation / Early Veg Stage (0.4 - 0.8 kPa)</span> |
+        <span style="color: blue; font-weight: bold;">● Late Veg / Early Flower Stage (0.8 - 1.2 kPa)</span> |
+        <span style="color: purple; font-weight: bold;">● Mid / Late Flower Stage (1.2 - 1.6 kPa)</span> |
+        <span style="color: red; font-weight: bold;">● Danger Zone (Abaixo de 0.4 ou Acima de 1.6 kPa)</span>
+    </div>
+    <!-- Gráfico VPD -->
+    <div class="chart-container">
+      <canvas id="vpdChart"></canvas>
+    </div>
+        <!-- Exibir o Temperatura Atual -->
+        <span class="metric-label">Temperatura (°C)</span>
+        <div class="current-vpd" id="currentTemperature">Carregando Temperatura...</div>
+    <!-- Leganda do grafico de VPD -->
+    <div style="text-align: center; margin-top: 10px;">
+      <span style="color: green; font-weight: bold;">● Propagation / Early Veg Stage (22° ~ 26° Celcius)</span> |
+      <span style="color: blue; font-weight: bold;">● Late Veg / Early Flower Stage (22° - 28° Celcius)</span> |
+      <span style="color: purple; font-weight: bold;">● Mid / Late Flower Stage (20 - 26° Celcius)</span> |
+      <span style="color: red; font-weight: bold;">● Danger Zone (Abaixo de 18° ou Acima de 28° Celcius)</span>
+  </div>
+    <div class="chart-container">
+      <canvas id="temperatureChart"></canvas>
+    </div>
+      <!-- Exibir o Umidade Atual -->
+      <span class="metric-label">Umidade (°C)</span>
+      <div class="current-vpd" id="currentHumidity">Carregando Umidade...</div>
+      <!-- Leganda do grafico de VPD -->
+      <div style="text-align: center; margin-top: 10px;">
+      <span style="color: green; font-weight: bold;">● Propagation / Early Veg Stage (70% ~ 80% de Umidade)</span> |
+      <span style="color: blue; font-weight: bold;">● Late Veg / Early Flower Stage (60% - 70% de Umidade)</span> |
+      <span style="color: purple; font-weight: bold;">● Mid / Late Flower Stage (35% - 50% de Umidade)</span> |
+      <span style="color: red; font-weight: bold;">● Danger Zone (Abaixo de 35% ou Acima de 80% de Umidade)</span>
+  </div>
+    <div class="chart-container">
+      <canvas id="humidityChart"></canvas>
+    </div>
+    <!-- Botão para voltar -->
+    <div class="back-button-container">
+      <button onclick="window.location.href='index.html'">Voltar</button>
+    </div>
+  </main>
+  <script src="dashboard.js"></script>
+</body>
+</html>
