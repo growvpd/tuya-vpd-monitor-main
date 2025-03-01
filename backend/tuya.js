@@ -3,8 +3,8 @@ const crypto = require('crypto');
 
 // Configurações
 const debug = true;
-const ClientID = "7j3tg7crd8gxr4rdsu7s";
-const ClientSecret = "ed01098ca59c40d2845de5ef25bb1dc9";
+const ClientID = "sjsmr9rtnsn8fgj7rrce";
+const ClientSecret = "9bb34ec30170490eb03dd45532f1bf53";
 const BaseUrl = "https://openapi.tuyaus.com";
 const EmptyBodyEncoded = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
 const deviceIds = "eb8faf00e42469ffaahezh";
